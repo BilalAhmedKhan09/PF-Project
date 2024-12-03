@@ -114,3 +114,59 @@ void draw_game() {
     printf("Score: %d\n", score);
 }
 
+// Move paddle
+void move_paddle(char direction) {
+    if (direction == 'a' && paddle_x > 1) {
+        paddle_x--;
+    } else if (direction == 'd' && paddle_x + PADDLE_WIDTH < WIDTH - 1) {
+        paddle_x++;
+    }
+}
+
+// Update ball position and handle collisions
+int update_ball() {
+	ball_x += ball_dx;
+    ball_y += ball_dy;
+
+    // Ball collision with walls
+    if (ball_x <= 1 || ball_x >= WIDTH - 2) {
+        ball_dx = -ball_dx;
+    }
+    if (ball_y <= 1) {
+        ball_dy = -ball_dy;
+    }
+
+    // Ball collision with paddle
+    if (ball_y == paddle_y - 1 && ball_x >= paddle_x && ball_x < paddle_x + PADDLE_WIDTH) {
+        ball_dy = -ball_dy;
+    }
+
+    // Ball collision with bricks
+    if (bricks[ball_y][ball_x] == 1) {
+        bricks[ball_y][ball_x] = 0;
+        game_area[ball_y][ball_x] = ' ';
+        ball_dy = -ball_dy;
+	    score += 10;
+		return 0;    
+		}
+
+	    // Game over condition
+	    if (ball_y >= HEIGHT) {
+	    	system("cls");
+	    	printf("\t\t\t\t------------------------------\t\t\t");
+	    	for(int i=0;i<3;i++){
+	    		for(int j=0;j<26;j++){
+	    			if(j==13 && i==1){
+	    				printf("\n\t\t\t\t| Game Over! Final Score: %d |\n\t\t\t\t Press space to exit\t\t\t\t", score);
+	    				
+					}
+	    		}
+	    		printf("\n\t\t\t\t|                            |\n");
+			}
+			printf("\t\t\t\t------------------------------\t\t\t");
+	       	return 1;
+		}
+	return 0;		
+}
+
+
