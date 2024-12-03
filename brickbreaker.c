@@ -22,6 +22,14 @@ void initialize_game() {
         }
     }
 
+// Main function
+int main() {
+	display_instructions();
+    initialize_game();
+    gameloop();
+    return 0;
+}
+
     // Add borders
     for (int i = 0; i < WIDTH; i++) {
         game_area[0][i] = '-';
