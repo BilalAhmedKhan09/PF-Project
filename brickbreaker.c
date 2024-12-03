@@ -65,6 +65,7 @@ void display_instructions() {
     printf("\t\t\t\t------------------------------\n");
     printf("\t\t\t\t|       BRICK BREAKER        |\n");
     printf("\t\t\t\t------------------------------\n");
+    printf("\t\t\t\t| DO NOT LET THE BALL FALL   |\n");
     printf("\t\t\t\t| Instructions:              |\n");
     printf("\t\t\t\t| 1. Use 'A' to move left.   |\n");
     printf("\t\t\t\t| 2. Use 'D' to move right.  |\n");
