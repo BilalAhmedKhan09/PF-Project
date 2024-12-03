@@ -169,4 +169,33 @@ int update_ball() {
 	return 0;		
 }
 
+// Main game loop
+void gameloop() {
+	draw_game();
+	if(getch()==' '){
+	    while (1) {
+	        // Handle input
+	        if(_kbhit()){
+	        	char ch = _getch();
+	        	move_paddle(ch);
+	        }
+	        // Update game state
+	        if(update_ball() == 1){
+	        	while(getch() != ' '){
+				}
+				exit(0);
+			};
+	
+	        // Draw the game
+	        draw_game();
+	
+	        // Delay for smoother gameplay
+	        usleep(100); // 50 ms
+	    }
+	}
+	else{
+		gameloop();
+	}
+}
+
 
