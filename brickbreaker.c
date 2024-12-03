@@ -73,3 +73,44 @@ void display_instructions() {
     }
 }
 
+// Draw the game area
+void draw_game() {
+    // Clear screen
+    system("cls");
+	
+	int padding = (CONSOLE_WIDTH - WIDTH) / 2;
+    if (padding < 0) padding = 0;
+    
+    // Place paddle
+    for (int i = 0; i < PADDLE_WIDTH; i++) {
+        game_area[paddle_y][paddle_x + i] = '=';
+    }
+
+    // Place ball
+    game_area[ball_y][ball_x] = '*';
+
+    // Print the game area
+    for (int i = 0; i < HEIGHT; i++) {
+    	for (int j = 0; j < padding; j++) {
+            printf(" ");
+        }
+        for (int j = 0; j < WIDTH; j++) {
+            printf("%c", game_area[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Remove paddle and ball for next frame
+    for (int i = 0; i < PADDLE_WIDTH; i++) {
+        game_area[paddle_y][paddle_x + i] = ' ';
+    }
+    game_area[ball_y][ball_x] = ' ';
+	
+	for (int j = 0; j < padding; j++) {
+        printf(" ");
+    }
+    
+    // Display score
+    printf("Score: %d\n", score);
+}
+
