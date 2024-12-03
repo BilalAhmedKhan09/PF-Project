@@ -206,4 +206,11 @@ void gameloop() {
 	}
 }
 
+// Main function
+int main() {
+	display_instructions();
+    initialize_game();
+    gameloop();
+    return 0;
+}
 
